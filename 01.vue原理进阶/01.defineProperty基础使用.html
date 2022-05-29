@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>vue原理进阶-defineProperty基础使用</title>
+  </head>
+  <body>
+    <script>
+      let data = {
+        name: "林杨",
+      };
+      data.name = "555";
+      console.log("data.name");
+
+      let data1 = {
+        name: "林杨",
+      };
+      Object.defineProperty(data1, "name", {
+        get() {
+          return data1.name;
+        },
+        set(newVel) {
+          console.log(newVel);
+        },
+      });
+    </script>
+  </body>
+</html>

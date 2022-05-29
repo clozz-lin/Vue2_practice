@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="app">
+      <p v-text="name" class="pClass"></p>
+    </div>
+    <script>
+      let data = {
+        name: "林杨",
+      };
+
+      function compile() {
+        let app = document.querySelector(".app");
+        const childNodes = app.childNodes;
+        // console.log(childNodes);
+        childNodes.forEach((node) => {
+          //   console.log(node.nodeType);
+          if (node.nodeType === 1) {
+            // console.log(node);
+            const attr = node.attributes;
+            console.log(attr);
+            Array.from(attr).forEach((attr) => {
+              //   console.log(attr);
+              const nodeName = attr.nodeName;
+              const nodeValue = attr.nodeValue;
+              console.log(nodeName);
+              console.log(nodeValue);
+              if (nodeName === "v-text") {
+                node.innerText = data[nodeValue];
+              }
+            });
+          }
+        });
+      }
+
+      compile();
+    </script>
+  </body>
+</html>

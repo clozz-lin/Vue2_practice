@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="app"></div>
+    <script>
+      let data = {
+        name: "林杨",
+        heght: 180,
+        age: 20,
+      };
+
+      Object.keys(data).forEach((key) => {
+        console.log(key, data[key]);
+        observe(data, key, data[key]);
+      });
+
+      function observe(data, name, val) {
+        Object.defineProperty(data, name, {
+          get() {
+            return val;
+          },
+          set(newVel) {
+            if (newVel === val) {
+              return;
+            }
+            val = newVel;
+            document.querySelector(".app").innerText = newVel;
+          },
+        });
+      }
+
+      document.querySelector(".app").innerText = data.name;
+    </script>
+  </body>
+</html>
